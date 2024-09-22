@@ -28,9 +28,18 @@ jobs:
       run: npm install
     - name: Build
       run: npm run build
+
+      # Verificar si la carpeta build fue creada
+    - name: Check Build Directory
+      run: |
+        if [ ! -d "build" ]; then
+          echo "Error: Build directory not found."
+          exit 1
+        fi
+
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         github_token: ${{ secrets.PAM_TOKEN }}
-        branch: gh-pages
+        branch: master
         folder: build
