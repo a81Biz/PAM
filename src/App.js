@@ -8,6 +8,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Playground />} />
         <Route path="/playground" element={<Home />} />
+        <Route path="/ps" element={<Home />} />
       </Routes>
     </Router>
   );
