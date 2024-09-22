@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# PAM - Proyecto Aplicación Modular
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+PAM es una aplicación modular desarrollada en React que centraliza diferentes contenidos y funcionalidades de otros repositorios en una plataforma unificada. Este proyecto está diseñado para integrarse y desplegarse en GitHub Pages, permitiendo una administración eficiente y accesible de las rutas y recursos.
 
-## Available Scripts
+## Descripción
 
-In the project directory, you can run:
+El proyecto utiliza React para crear una interfaz moderna y dinámica, integrando contenido de diferentes repositorios para mejorar la modularidad y reutilización de los componentes. La estructura del proyecto permite mostrar y acceder a contenidos específicos desde rutas amigables y configuradas para un acceso intuitivo.
 
-### `npm start`
+## Tecnologías Utilizadas
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React**: Biblioteca principal para la construcción de la interfaz de usuario.
+- **React Router Dom**: Utilizado para el manejo de rutas dentro de la aplicación, configurado con `HashRouter` para evitar errores 404 en GitHub Pages.
+- **GitHub Pages**: Plataforma utilizada para el despliegue estático de la aplicación.
+- **GitHub Actions**: Automatiza el proceso de construcción y despliegue mediante workflows personalizados.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Configuración Crítica de `package.json`
 
-### `npm test`
+Para el correcto funcionamiento de la aplicación, es esencial configurar correctamente el `homepage` en `package.json` y asegurarse de incluir `react-router-dom` como una dependencia. Aquí se muestra un ejemplo de la configuración crítica:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```json
+{
+  "name": "pam",
+  "version": "1.0.0",
+  "homepage": "https://tuusuario.github.io/tu-repositorio", // Cambia por la URL de tu GitHub Pages
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.0.0" // Dependencia crítica para el manejo de rutas
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  }
+}
+```
 
-### `npm run build`
+### Dependencias Críticas:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **`react-router-dom`**: Configurado con `HashRouter` para manejar correctamente las rutas sin causar errores 404 en GitHub Pages.
+- **GitHub Actions**: Configurado para instalar y utilizar las dependencias correctamente durante el proceso de despliegue.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Pasos de Configuración
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Instalar dependencias**:
 
-### `npm run eject`
+   ```bash
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. **Ejecutar la aplicación localmente**:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```bash
+   npm start
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. **Construir para producción**:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   ```bash
+   npm run build
+   ```
 
-## Learn More
+## Despliegue
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+La aplicación está configurada para ser desplegada automáticamente en GitHub Pages mediante GitHub Actions. Se han configurado workflows personalizados que permiten construir y desplegar el contenido de manera eficiente.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Consideraciones Importantes
 
-### Code Splitting
+- Se seleccionaron dos repositorios: uno principal y otro configurado para ser accesible mediante una ruta amigable.
+- Se realizaron modificaciones en los YAML de los repositorios secundarios para automatizar el disparo de acciones necesarias y asegurar la publicación correcta en GitHub Pages.
+- **Uso de `HashRouter`**: Es fundamental para evitar errores 404 en GitHub Pages, ya que maneja las rutas completamente del lado del cliente.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Licencia
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Este proyecto está bajo la licencia [MIT License](LICENSE).
