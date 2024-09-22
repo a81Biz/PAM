@@ -6,7 +6,7 @@ function App() {
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Playground />} />
         <Route path="/playground" element={<Playground />} />
       </Routes>
     </Router>
