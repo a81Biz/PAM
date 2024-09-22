@@ -1,0 +1,92 @@
+/* Tipografía */
+
+
+body {
+    font-family: "Roboto light", sans-serif;
+    font-size: 16px;
+    color: #333333;
+  }
+  
+  h1, h2, h3 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
+  
+  h2 {
+    font-size: 18px;
+  }
+  
+  /* Colores */
+  
+  body {
+    background-color: #ffffff;
+  }
+  
+  a {
+    color: #F26A4B;
+  }
+  
+  a:hover {
+    color: #F26A4B;
+  }
+  
+  .container {
+    max-width: 960px;
+    margin: 20px auto;
+    background-color: #ffffff;
+  }
+  
+  .perfil-img {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    border: 2px solid #999999;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+  
+  @media (max-width: 768px) {
+    .perfil-img {
+      max-width: 200px;
+    }
+  }
+  
+  .biografia {
+    margin: 20px 0;
+    line-height: 1.5;
+  }
+  
+  #enlaces-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #enlaces-lista li {
+    margin-bottom: 10px;
+  }
+  
+  #enlaces-lista li i {
+    color: #0B3E8F;;
+    margin-right: 10px;
+  }
+  
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0B3E8F;
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  .footer a {
+    color: #ffffff;
+  }
+
