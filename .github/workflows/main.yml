@@ -12,10 +12,8 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      # Checkout del repositorio principal (PAM)
     - uses: actions/checkout@v3
     
-      # Checkout del repositorio a81Biz/LandingPage
     - name: Checkout LandingPage
       uses: actions/checkout@v3
       with:
@@ -23,7 +21,6 @@ jobs:
         path: LandingPage
         ref: master
 
-      # Checkout del repositorio a81Biz/JavaScript-Playground
     - name: Checkout JavaScript-Playground
       uses: actions/checkout@v3
       with:
@@ -31,26 +28,22 @@ jobs:
         path: JavaScript-Playground
         ref: main
 
-      # Copiar el contenido del repositorio LandingPage al directorio de despliegue
     - name: Copy LandingPage Content
       run: |
         mkdir -p build/LandingPage
         cp -R LandingPage/* build/LandingPage/
 
-      # Copiar el contenido del repositorio JavaScript-Playground al directorio de despliegue
     - name: Copy JavaScript-Playground Content
       run: |
         mkdir -p build/JavaScript-Playground
         cp -R JavaScript-Playground/* build/JavaScript-Playground/
 
-      # Instalar dependencias del proyecto principal (PAM) y construirlo
     - name: Install dependencies
       run: npm install
 
     - name: Build
       run: npm run build
 
-      # Verificar si la carpeta build fue creada correctamente
     - name: Check Build Directory
       run: |
         if [ ! -d "build" ]; then
@@ -58,11 +51,15 @@ jobs:
           exit 1
         fi
 
-      # Añadir un archivo .nojekyll para evitar conflictos con GitHub Pages
     - name: Add .nojekyll file
       run: echo "" > build/.nojekyll
 
-      # Desplegar el contenido a GitHub Pages desde la carpeta build
+    # Configuración de Git para evitar errores de identidad
+    - name: Setup Git
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
