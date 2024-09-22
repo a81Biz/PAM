@@ -52,7 +52,7 @@ jobs:
       run: |
         mkdir -p build/JavaScript-Playground
         cp -R JavaScript-Playground/* build/JavaScript-Playground/
-        ls build/JavaScript-Playground  # Verificar que los archivos se copian correctamente
+        ls -R build/JavaScript-Playground  # Verificar que los archivos se copian correctamente
 
     # Añadir un archivo .nojekyll para evitar problemas con GitHub Pages
     - name: Add .nojekyll file
