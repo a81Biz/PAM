@@ -32,13 +32,13 @@ jobs:
       run: |
         mkdir -p build/LandingPage
         cp -R LandingPage/* build/LandingPage/
-        ls build/LandingPage
+        ls build/LandingPage  # Verificar que los archivos se copian correctamente
 
     - name: Copy JavaScript-Playground Content
       run: |
         mkdir -p build/JavaScript-Playground
         cp -R JavaScript-Playground/* build/JavaScript-Playground/
-        ls build/JavaScript-Playground
+        ls build/JavaScript-Playground  # Verificar que los archivos se copian correctamente
 
     - name: Install dependencies
       run: npm install
@@ -53,10 +53,12 @@ jobs:
           exit 1
         fi
 
+    - name: Verify Build Content
+      run: ls build  # Lista todo el contenido de la carpeta build antes del despliegue
+
     - name: Add .nojekyll file
       run: echo "" > build/.nojekyll
 
-    # Configuración de Git para evitar errores de identidad
     - name: Setup Git
       run: |
         git config --global user.name "github-actions[bot]"
