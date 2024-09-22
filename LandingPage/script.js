@@ -13,7 +13,7 @@ class Perfil {
         }
       };
   
-      xhr.open('GET', 'informacion.json', true);
+      xhr.open('GET', 'https://raw.githubusercontent.com/a81Biz/AMSharedData/refs/heads/master/informacion.json', true);
       xhr.send();
     }
   
