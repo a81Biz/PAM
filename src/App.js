@@ -3,21 +3,12 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React... a ver
-        </a>
-      </header>
+    <div className="App" style={{ height: '100vh', overflow: 'hidden' }}>
+      <iframe 
+        src="./LandingPage/index.html" 
+        style={{ width: '100%', height: '100%', border: 'none' }} 
+        title="Landing Page"
+      ></iframe>
     </div>
   );
 }

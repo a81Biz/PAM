@@ -24,7 +24,7 @@ jobs:
 
     # Verificar el contenido de la aplicación React en la carpeta build
     - name: Verify PAM Build
-      run: ls -R build  # Asegurarse de que index.html y otros archivos estén presentes
+      run: ls -R build 
 
     # Checkout del repositorio LandingPage y copiar su contenido en una subcarpeta
     - name: Checkout LandingPage
@@ -38,7 +38,7 @@ jobs:
       run: |
         mkdir -p build/LandingPage
         cp -R LandingPage/* build/LandingPage/
-        ls build/LandingPage  # Verificar que los archivos se copian correctamente
+        ls build/LandingPage
 
     # Checkout del repositorio JavaScript-Playground y copiar su contenido en una subcarpeta
     - name: Checkout JavaScript-Playground
@@ -52,7 +52,7 @@ jobs:
       run: |
         mkdir -p build/JavaScript-Playground
         cp -R JavaScript-Playground/* build/JavaScript-Playground/
-        ls -R build/JavaScript-Playground  # Verificar que los archivos se copian correctamente
+        ls -R build/JavaScript-Playground 
 
     # Añadir un archivo .nojekyll para evitar problemas con GitHub Pages
     - name: Add .nojekyll file
