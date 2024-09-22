@@ -54,7 +54,7 @@ jobs:
         fi
 
     - name: Verify Build Content
-      run: ls build  # Lista todo el contenido de la carpeta build antes del despliegue
+      run: ls -R build  # Lista todo el contenido de la carpeta build antes del despliegue
 
     - name: Add .nojekyll file
       run: echo "" > build/.nojekyll
@@ -64,9 +64,19 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
+    # Desplegar a GitHub Pages con logs de depuración activados
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         github_token: ${{ secrets.PAM_TOKEN }}
         branch: gh-pages
         folder: build
+        debug: true  # Activa la depuración para obtener más detalles en los logs
+
+    # Verificar el estado después del despliegue
+    - name: Post-Deployment Verification
+      run: |
+        echo "Deployment completed. Verifying deployed content..."
+        git fetch origin gh-pages
+        git checkout gh-pages
+        ls -R  # Lista los archivos que están actualmente en la rama gh-pages
