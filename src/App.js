@@ -1,19 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import Home from './components/Home'; // Componente para la página principal
+import Playground from './components/Playground'; // Componente para el iframe de JavaScript-Playground
 
 function App() {
-  useEffect(() => {
-    document.title = 'AM | Landing Page';
-  }, []); 
-
   return (
-    <div className="App" style={{ height: '100vh', overflow: 'hidden' }}>
-      <iframe 
-        src="./LandingPage/index.html" 
-        style={{ width: '100%', height: '100%', border: 'none' }} 
-        title="Landing Page"
-      ></iframe>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/playground" element={<Playground />} /> 
+      </Routes>
+    </Router>
   );
 }
 
