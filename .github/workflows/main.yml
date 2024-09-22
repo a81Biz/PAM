@@ -14,6 +14,18 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
+    # Construir la aplicación React principal (PAM)
+    - name: Install dependencies for PAM
+      run: npm install
+
+    - name: Build PAM
+      run: npm run build
+
+    # Verificar el contenido de la aplicación React en la carpeta build
+    - name: Verify PAM Build
+      run: ls -R build  # Asegurarse de que index.html y otros archivos estén presentes
+
+    # Checkout del repositorio LandingPage y copiar su contenido en una subcarpeta
     - name: Checkout LandingPage
       uses: actions/checkout@v3
       with:
@@ -21,6 +33,13 @@ jobs:
         path: LandingPage
         ref: master
 
+    - name: Copy LandingPage Content
+      run: |
+        mkdir -p build/LandingPage
+        cp -R LandingPage/* build/LandingPage/
+        ls build/LandingPage  # Verificar que los archivos se copian correctamente
+
+    # Checkout del repositorio JavaScript-Playground y copiar su contenido en una subcarpeta
     - name: Checkout JavaScript-Playground
       uses: actions/checkout@v3
       with:
@@ -28,22 +47,11 @@ jobs:
         path: JavaScript-Playground
         ref: main
 
-    # Copiar los archivos HTML y JS al directorio de despliegue
-    - name: Copy LandingPage Content
-      run: |
-        mkdir -p build/LandingPage
-        cp -R LandingPage/* build/LandingPage/
-        ls build/LandingPage  # Verificar que los archivos se copian correctamente
-
     - name: Copy JavaScript-Playground Content
       run: |
         mkdir -p build/JavaScript-Playground
         cp -R JavaScript-Playground/* build/JavaScript-Playground/
         ls build/JavaScript-Playground  # Verificar que los archivos se copian correctamente
-
-    # Verificación del contenido antes del despliegue
-    - name: Verify Build Content
-      run: ls -R build  # Lista todo el contenido de la carpeta build antes del despliegue
 
     # Añadir un archivo .nojekyll para evitar problemas con GitHub Pages
     - name: Add .nojekyll file
@@ -55,11 +63,11 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-    # Desplegar a GitHub Pages asegurando que todos los archivos están correctamente copiados
+    # Desplegar todo el contenido a GitHub Pages desde la carpeta build
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         github_token: ${{ secrets.PAM_TOKEN }}
         branch: gh-pages
         folder: build
-        debug: true  # Activar depuración para más detalles
+        debug: true
