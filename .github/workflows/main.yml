@@ -28,6 +28,7 @@ jobs:
         path: JavaScript-Playground
         ref: main
 
+    # Copiar los archivos HTML y JS al directorio de despliegue
     - name: Copy LandingPage Content
       run: |
         mkdir -p build/LandingPage
@@ -40,43 +41,25 @@ jobs:
         cp -R JavaScript-Playground/* build/JavaScript-Playground/
         ls build/JavaScript-Playground  # Verificar que los archivos se copian correctamente
 
-    - name: Install dependencies
-      run: npm install
-
-    - name: Build
-      run: npm run build
-
-    - name: Check Build Directory
-      run: |
-        if [ ! -d "build" ]; then
-          echo "Error: Build directory not found."
-          exit 1
-        fi
-
+    # Verificación del contenido antes del despliegue
     - name: Verify Build Content
       run: ls -R build  # Lista todo el contenido de la carpeta build antes del despliegue
 
+    # Añadir un archivo .nojekyll para evitar problemas con GitHub Pages
     - name: Add .nojekyll file
       run: echo "" > build/.nojekyll
 
+    # Configuración de Git para el despliegue
     - name: Setup Git
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-    # Desplegar a GitHub Pages con logs de depuración activados
+    # Desplegar a GitHub Pages asegurando que todos los archivos están correctamente copiados
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         github_token: ${{ secrets.PAM_TOKEN }}
         branch: gh-pages
         folder: build
-        debug: true  # Activa la depuración para obtener más detalles en los logs
-
-    # Verificar el estado después del despliegue
-    - name: Post-Deployment Verification
-      run: |
-        echo "Deployment completed. Verifying deployed content..."
-        git fetch origin gh-pages
-        git checkout gh-pages
-        ls -R  # Lista los archivos que están actualmente en la rama gh-pages
+        debug: true  # Activar depuración para más detalles
