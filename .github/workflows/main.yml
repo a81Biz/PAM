@@ -32,11 +32,13 @@ jobs:
       run: |
         mkdir -p build/LandingPage
         cp -R LandingPage/* build/LandingPage/
+        ls build/LandingPage
 
     - name: Copy JavaScript-Playground Content
       run: |
         mkdir -p build/JavaScript-Playground
         cp -R JavaScript-Playground/* build/JavaScript-Playground/
+        ls build/JavaScript-Playground
 
     - name: Install dependencies
       run: npm install
