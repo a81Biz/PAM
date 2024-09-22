@@ -3,7 +3,7 @@ import './App.css';
 
 function App() {
   useEffect(() => {
-    document.title = 'Landing Page - PAM';
+    document.title = 'AM | Landing Page';
   }, []); 
 
   return (
