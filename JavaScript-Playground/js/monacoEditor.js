@@ -7,7 +7,7 @@ const MonacoEditor = () => {
     let init = () => {
 
         window.MonacoEnvironment = {
-            baseUrl: Uri.URLBASE
+            baseUrl: './'
         };
 
         require.config({
