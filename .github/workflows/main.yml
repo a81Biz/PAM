@@ -2,7 +2,7 @@ name: Deploy PAM
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
     paths:
       - 'LandingPage/**'
       - 'JavaScript-Playground/**'
@@ -12,34 +12,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+
     - name: Checkout LandingPage
       uses: actions/checkout@v3
       with:
         repository: a81Biz/LandingPage
         path: LandingPage
         ref: master
+
     - name: Checkout JavaScript-Playground
       uses: actions/checkout@v3
       with:
         repository: a81Biz/JavaScript-Playground
         path: JavaScript-Playground
         ref: main
+
     - name: Install dependencies
       run: npm install
     - name: Build
       run: npm run build
 
-      # Verificar si la carpeta build fue creada
-    - name: Check Build Directory
-      run: |
-        if [ ! -d "build" ]; then
-          echo "Error: Build directory not found."
-          exit 1
-        fi
-
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         github_token: ${{ secrets.PAM_TOKEN }}
-        branch: master
+        branch: gh-pages
         folder: build
