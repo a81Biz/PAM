@@ -1,14 +1,13 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'; // Usa HashRouter
 import Home from './components/Home';
 import Playground from './components/Playground';
 
 function App() {
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router> 
       <Routes>
-        <Route path="/" element={<Playground />} />
-        <Route path="/playground" element={<Home />} />
-        <Route path="/ps" element={<Home />} />
+        <Route path="/" element={<Home />} /> 
+        <Route path="/playground" element={<Playground />} /> 
       </Routes>
     </Router>
   );
