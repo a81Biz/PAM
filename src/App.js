@@ -9,7 +9,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} /> 
         <Route path="/playground" element={<Playground />} /> 
-        <Route path="/infographic" element={<Infographic />} /> 
       </Routes>
     </Router>
   );
