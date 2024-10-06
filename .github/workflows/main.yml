@@ -52,7 +52,21 @@ jobs:
       run: |
         mkdir -p build/JavaScript-Playground
         cp -R JavaScript-Playground/* build/JavaScript-Playground/
-        ls -R build/JavaScript-Playground 
+        ls -R build/JavaScript-Playground
+
+    # Checkout del repositorio Infographic-demo y copiar su contenido en una subcarpeta
+    - name: Checkout Infographic-demo
+      uses: actions/checkout@v3
+      with:
+        repository: a81Biz/Infographic-demo
+        path: Infographic-demo
+        ref: main
+
+    - name: Copy Infographic-demo Content
+      run: |
+        mkdir -p build/Infographic-demo
+        cp -R Infographic-demo/* build/Infographic-demo/
+        ls -R build/Infographic-demo
 
     # Añadir un archivo .nojekyll para evitar problemas con GitHub Pages
     - name: Add .nojekyll file
