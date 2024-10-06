@@ -8,7 +8,7 @@ function Infographic() {
   return (
     <div style={{ height: '100vh', overflow: 'hidden' }}>
       <iframe
-        src="./Infographic-demo/public/index.html" 
+        src="./Infographic-demo" 
         style={{ width: '100%', height: '100%', border: 'none' }}
         title="Infographic"
       ></iframe>
