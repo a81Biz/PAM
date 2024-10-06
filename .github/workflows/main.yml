@@ -65,7 +65,7 @@ jobs:
     - name: Copy Infographic-demo Content
       run: |
         mkdir -p build/Infographic-demo
-        cp -R Infographic-demo/* build/Infographic-demo/
+        cp -R Infographic-demo/build/* build/Infographic-demo/
         ls -R build/Infographic-demo
 
     # Añadir un archivo .nojekyll para evitar problemas con GitHub Pages
