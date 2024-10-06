@@ -61,6 +61,12 @@ jobs:
         repository: a81Biz/Infographic-demo
         path: Infographic-demo
         ref: master
+    
+    - name: Install dependencies and Build Infographic-demo
+      working-directory: Infographic-demo
+      run: |
+        npm install
+        npm run build
 
     - name: Copy Infographic-demo Content
       run: |
