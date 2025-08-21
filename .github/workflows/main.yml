@@ -74,6 +74,20 @@ jobs:
         cp -R Infographic-demo/dist/* build/Infographic-demo/
         ls -R build/Infographic-demo
 
+    # Checkout del repositorio dados y copiar su contenido en una subcarpeta
+    - name: Checkout dados
+      uses: actions/checkout@v3
+      with:
+        repository: a81Biz/dados
+        path: dados
+        ref: main
+
+    - name: Copy dados Content
+      run: |
+        mkdir -p build/dados
+        cp -R dados/* build/dados/
+        ls build/dados
+
     # Añadir un archivo .nojekyll para evitar problemas con GitHub Pages
     - name: Add .nojekyll file
       run: echo "" > build/.nojekyll
