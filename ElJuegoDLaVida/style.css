@@ -1,0 +1,181 @@
+/* --- Estilos Generales y Definición de Colores --- */
+:root {
+    --bg-color: #121212;
+    --grid-bg: #1d1d1d;
+    --cell-dead-color: #282828;
+    --cell-alive-color: #00bcd4;
+    --text-color: #e0e0e0;
+    --primary-color: #0097a7;
+    --border-color: #333;
+}
+
+/* --- Reset Básico y Estilos del Body --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex; /* Centra el contenido verticalmente */
+    flex-direction: column;
+    align-items: center; /* Centra el contenido horizontalmente */
+    padding: 1rem; /* Añade un pequeño margen en los bordes de la pantalla */
+    min-height: 100vh;
+}
+
+/* --- Contenedor Principal Adaptable --- */
+.container {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 900px; /* Pero tiene un límite para no estirarse demasiado en monitores grandes */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Espacio entre elementos (controles, grid, reglas) */
+}
+
+h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+/* --- Controles (Diseño Mobile-First) --- */
+.controls {
+    display: grid;
+    /* En móviles, los controles se apilan en 2 columnas para un mejor uso del espacio. */
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    padding: 1rem;
+    background-color: var(--grid-bg);
+    border-radius: 8px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.control-group label {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+.control-group input {
+    background-color: var(--cell-dead-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 0.5rem;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.button-group {
+    /* Hace que el grupo de botones ocupe las 2 columnas en el diseño móvil. */
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 0.75rem;
+}
+
+.button {
+    flex-grow: 1; /* Permite que los botones se estiren para ocupar el espacio disponible */
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#start-btn { background-color: #4caf50; color: white; }
+#pause-btn { background-color: #ff9800; color: white; }
+#clear-btn { background-color: #f44336; color: white; }
+
+#start-btn:hover { background-color: #5cb85c; }
+#pause-btn:hover { background-color: #ffa726; }
+#clear-btn:hover { background-color: #e53935; }
+
+#generation-counter {
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    grid-column: 1 / -1;
+}
+
+/* --- Cuadrícula del Juego (La clave de la adaptabilidad) --- */
+#grid-container {
+    display: grid;
+    width: 100%; /* Ocupa el 100% del ancho de su contenedor (.container) */
+    
+    /* ESTA ES LA PROPIEDAD CLAVE: */
+    /* Mantiene la relación de aspecto 1:1, asegurando que siempre sea un cuadrado perfecto. */
+    /* Su altura se ajustará automáticamente para igualar su ancho, que ya es responsivo. */
+    aspect-ratio: 1 / 1; 
+    
+    background-color: var(--grid-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    /* Mejora la respuesta táctil en móviles al dibujar en la cuadrícula */
+    touch-action: none; 
+}
+
+.cell {
+    background-color: var(--cell-dead-color);
+    border: 1px solid #222; /* Borde sutil para ver las celdas muertas */
+}
+
+.cell.alive {
+    background-color: var(--cell-alive-color);
+    border-color: var(--cell-alive-color);
+    box-shadow: 0 0 5px var(--cell-alive-color); /* Efecto de brillo para celdas vivas */
+}
+
+/* --- Sección de Reglas Colapsable --- */
+.rules-section {
+    background-color: var(--grid-bg);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+#toggle-rules-btn {
+    background: none;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+#rules-content {
+    display: none; /* Por defecto, las reglas están ocultas */
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+#rules-content h3 { color: var(--primary-color); margin-bottom: 0.5rem; }
+#rules-content ul { list-style: none; padding-left: 0; }
+#rules-content li { margin-bottom: 0.5rem; line-height: 1.5; }
+
+/* --- Media Query para pantallas más grandes (Tablets y Escritorio) --- */
+/* Estos estilos se aplicarán SOLO si el ancho de la pantalla es de 768px o más. */
+@media (min-width: 768px) {
+    .controls {
+        /* Reorganiza los controles en una sola fila con 4 columnas para aprovechar el espacio horizontal. */
+        grid-template-columns: repeat(4, 1fr);
+        align-items: flex-end; /* Alinea los elementos al final para un look más limpio */
+    }
+    .button-group {
+        grid-column: span 2; /* El grupo de botones ahora ocupa 2 de las 4 columnas */
+    }
+    #generation-counter {
+        grid-column: span 4; /* El contador ocupa todo el ancho */
+    }
+}
