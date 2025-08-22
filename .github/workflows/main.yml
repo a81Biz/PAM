@@ -88,6 +88,20 @@ jobs:
         cp -R dados/* build/dados/
         ls build/dados
 
+    # Checkout del repositorio el juego DLV y copiar su contenido en una subcarpeta
+    - name: Checkout juego DLV
+      uses: actions/checkout@v3
+      with:
+        repository: a81Biz/ElJuegoDLaVida
+        path: ElJuegoDLaVida
+        ref: master
+
+    - name: Copy juego DLV Content
+      run: |
+        mkdir -p build/ElJuegoDLaVida
+        cp -R ElJuegoDLaVida/* build/ElJuegoDLaVida/
+        ls build/ElJuegoDLaVida
+
     # Añadir un archivo .nojekyll para evitar problemas con GitHub Pages
     - name: Add .nojekyll file
       run: echo "" > build/.nojekyll
