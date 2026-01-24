@@ -110,6 +110,12 @@ jobs:
         path: markdownBookshelf
         ref: master
 
+    - name: Install dependencies and Build Markdown Bookshelf
+      working-directory: markdownBookshelf
+      run: |
+        npm install
+        npm run build
+
     - name: Copy Markdown Bookshelf Content
       run: |
         mkdir -p build/MB
