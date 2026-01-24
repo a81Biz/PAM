@@ -119,7 +119,7 @@ jobs:
     - name: Copy Markdown Bookshelf Content
       run: |
         mkdir -p build/MB
-        cp -R markdownBookshelf/* build/MB/
+        cp -R markdownBookshelf/dist/* build/MB/
         ls build/MB
 
 
