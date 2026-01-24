@@ -102,6 +102,21 @@ jobs:
         cp -R ElJuegoDLaVida/* build/ElJuegoDLaVida/
         ls build/ElJuegoDLaVida
 
+    # Checkout del repositorio Markdown Bookshelf y copiar su contenido en una subcarpeta
+    - name: Checkout Markdown Bookshelf
+      uses: actions/checkout@v3
+      with:
+        repository: a81Biz/markdownBookshelf
+        path: markdownBookshelf
+        ref: main
+
+    - name: Copy Markdown Bookshelf Content
+      run: |
+        mkdir -p build/MB
+        cp -R dados/* build/MB/
+        ls build/MB
+
+
     # Añadir un archivo .nojekyll para evitar problemas con GitHub Pages
     - name: Add .nojekyll file
       run: echo "" > build/.nojekyll
