@@ -1,0 +1,180 @@
+/* ===========================
+   El Castillo Vagabundo – UI
+   Paletas del Manual 2025
+   =========================== */
+
+/* Paleta principal (manual) */
+:root{
+  --cv-rojo:   #AD1325; /* épico/heroico */
+  --cv-dorado: #F7B33E; /* magia/tesoro */
+  --cv-gris:   #E6E6E6; /* base neutra */
+
+  /* Paleta secundaria (manual) */
+  --cv-azul:   #276F89;
+  --cv-verde:  #A3C094;
+  --cv-negro:  #000000;
+
+  /* Derivados UI */
+  --bg-1: #0f0f14;            /* fondo principal profundo */
+  --bg-2: #161620;            /* panel */
+  --ink: #f7f7fa;             /* texto primario */
+  --muted: #b9bed1;           /* texto secundario */
+  --ring: rgba(255,255,255,.08);
+  --shadow: 0 18px 40px rgba(0,0,0,.35);
+
+  /* Acentos por tema (se sobreescriben con [data-theme]) */
+  --accent: var(--cv-rojo);
+  --accent-2: var(--cv-dorado);
+  --neutral: var(--cv-gris);
+}
+
+/* Cambiar a la paleta secundaria colocando data-theme="secundaria" en <html> */
+html[data-theme="secundaria"]{
+  --accent: var(--cv-azul);
+  --accent-2: var(--cv-verde);
+  --neutral: var(--cv-negro);
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html, body { height:100%; }
+
+body{
+  font-family: 'Roboto', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  color: var(--ink);
+  background:
+    radial-gradient(1100px 520px at 15% -10%, color-mix(in hsl, var(--accent) 15%, transparent), transparent 60%),
+    radial-gradient(1000px 480px at 110% 120%, color-mix(in hsl, var(--accent-2) 22%, transparent), transparent 45%),
+    linear-gradient(180deg, #0b0b10, var(--bg-1));
+  display:flex; align-items:flex-start; justify-content:center;
+  padding:1rem;
+}
+
+/* Contenedor principal */
+.app-container{
+  width:100%; max-width:760px;
+  background: color-mix(in srgb, var(--bg-2) 88%, black);
+  border:1px solid var(--ring);
+  border-radius:24px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+  padding:1.25rem;
+  position:relative; overflow:hidden;
+}
+
+/* Marca de agua sutil del logo (si existe el SVG en assets/) */
+.app-container::before{
+  content:"";
+  position:absolute; right:-6%; bottom:-8%;
+  width:360px; height:360px; opacity:.05;
+  background: url("assets/logo-el-castillo-vagabundo.svg") no-repeat center / contain;
+  pointer-events:none;
+}
+
+/* ---------- Header / Brand ---------- */
+.app-header{ margin-bottom:1rem; }
+.brand{ display:flex; align-items:center; gap:.8rem; }
+.brand__logo{
+  width:56px; height:56px;
+  object-fit:contain;
+}
+.brand__text{ line-height:1; }
+
+.title{
+  font-family: 'Grenze Gotisch', serif; /* Título breve (manual) */
+  font-weight: 400;
+  font-size: 1.65rem;
+  letter-spacing: .3px;
+  color: var(--accent);
+  text-shadow: 0 2px 10px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+.subtitle{
+  font-size: .95rem;
+  color: var(--muted);
+  margin-top: .2rem;
+}
+
+/* ---------- Panel de resultado ---------- */
+.result-display{
+  background: #0e0e18;
+  border:1px solid var(--ring);
+  border-radius:18px;
+  padding:1.6rem 1.2rem;
+  text-align:center;
+  margin:1rem 0 1.25rem;
+  position:relative; overflow:hidden;
+}
+.result-display::after{
+  content:''; position:absolute; inset:0;
+  pointer-events:none;
+}
+#result-text{
+  font-family: 'Metamorphous', serif;
+  font-size: 2.4rem; letter-spacing:.5px;
+  color: #fff; user-select:none;
+  transition: transform .15s ease, opacity .15s ease;
+}
+
+/* ---------- Botones de dados ---------- */
+.dice-grid{
+  display:grid; gap:.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  margin-bottom:1.25rem;
+}
+.dice-button{
+  appearance:none; border:none; cursor:pointer;
+  background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent) 78%, #ffffff 22%));
+  color:#fff; font-weight:700; font-size:1.05rem;
+  padding:.9rem 1rem; border-radius:14px;
+  box-shadow: 0 10px 16px color-mix(in srgb, var(--accent) 25%, transparent);
+  transition: transform .06s ease, filter .2s ease, box-shadow .2s ease;
+}
+.dice-button:hover{
+  filter: saturate(1.06) brightness(1.02);
+}
+.dice-button:active{
+  transform: translateY(1px) scale(.99);
+}
+
+/* ---------- Historial ---------- */
+.history-container{
+  background: color-mix(in srgb, #0f1223 75%, var(--accent-2) 5%);
+  border:1px solid var(--ring);
+  border-radius:16px; padding:1rem;
+}
+.history-header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding-bottom:.5rem; margin-bottom:.75rem;
+  border-bottom:1px solid var(--ring);
+}
+.history-header h2{
+  font-size:1.05rem; font-weight:700; color:#fff;
+}
+.ghost-btn{
+  background:transparent; color:var(--accent);
+  border:1px solid var(--accent);
+  padding:.35rem .65rem; border-radius:10px; font-weight:600;
+  cursor:pointer; transition: background .2s, color .2s, transform .06s;
+}
+.ghost-btn:hover{ background:var(--accent); color:#fff; }
+.ghost-btn:active{ transform: translateY(1px); }
+
+#history-list{
+  list-style:none; max-height:220px; overflow-y:auto; padding-right:8px;
+}
+#history-list li{
+  background:#101428;
+  border:1px solid var(--ring);
+  border-radius:10px; padding:.65rem .75rem;
+  font-size:.98rem; color:#e9ecfb; margin-bottom:.5rem;
+}
+
+/* Scrollbar */
+#history-list::-webkit-scrollbar{ width:6px; }
+#history-list::-webkit-scrollbar-thumb{ background: var(--accent); border-radius:10px; }
+#history-list::-webkit-scrollbar-track{ background: rgba(255,255,255,.06); }
+
+/* ---------- Responsivo ---------- */
+@media (min-width:768px){
+  .app-container{ padding:1.5rem 1.75rem; }
+  #result-text{ font-size:2.8rem; }
+}
