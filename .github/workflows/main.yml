@@ -108,7 +108,7 @@ jobs:
       with:
         repository: a81Biz/markdownBookshelf
         path: markdownBookshelf
-        ref: main
+        ref: master
 
     - name: Copy Markdown Bookshelf Content
       run: |
