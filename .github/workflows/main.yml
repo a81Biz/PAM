@@ -120,7 +120,7 @@ jobs:
       run: |
         mkdir -p build/MB
         cp -R markdownBookshelf/dist/* build/MB/
-        ls build/MB
+        ls -R build/MB
 
 
     # Añadir un archivo .nojekyll para evitar problemas con GitHub Pages
