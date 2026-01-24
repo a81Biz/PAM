@@ -1,60 +1,14 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="principal">
+<html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lanzador de Dados – El Castillo Vagabundo</title>
-
-  <!-- Tipografías de interfaz (Manual): Roboto + Metamorphous -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Metamorphous&family=Roboto:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>MB | Markdown Bookshelf</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 </head>
-<body>
-  <main class="app-container">
-    <!-- Header con marca -->
-    <header class="app-header">
-      <div class="brand">
-        <!-- Cuando tengas el SVG oficial, colócalo en assets/logo-el-castillo-vagabundo.svg -->
-        <picture>
-          <source srcset="assets/logo-el-castillo-vagabundo.svg" type="image/svg+xml">
-          <img class="brand__logo" src="assets/logo-el-castillo-vagabundo.png" alt="El Castillo Vagabundo - Logotipo">
-        </picture>
-        <div class="brand__text">
-          <h1 class="title">El Castillo Vagabundo</h1>
-          <p class="subtitle">Lanzador de Dados</p>
-        </div>
-      </div>
-    </header>
-
-    <!-- Panel de resultado (respetando IDs usados por script.js) -->
-    <section class="result-display" aria-live="polite">
-      <span id="result-text">¡Listo para rodar!</span>
-    </section>
-
-    <!-- Controles de dados (respetando IDs y dataset) -->
-    <section id="dice-controls" class="dice-grid" aria-label="Selecciona un dado">
-      <button class="dice-button" data-sides="4">d4</button>
-      <button class="dice-button" data-sides="6">d6</button>
-      <button class="dice-button" data-sides="8">d8</button>
-      <button class="dice-button" data-sides="10">d10</button>
-      <button class="dice-button" data-sides="12">d12</button>
-      <button class="dice-button" data-sides="20">d20</button>
-      <button class="dice-button" data-sides="100">%</button>
-    </section>
-
-    <!-- Historial -->
-    <section class="history-container">
-      <div class="history-header">
-        <h2>Historial</h2>
-        <button id="clear-history" class="ghost-btn" title="Limpiar historial">Limpiar</button>
-      </div>
-      <ul id="history-list"></ul>
-    </section>
-  </main>
-
-  <script src="script.js"></script>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>
